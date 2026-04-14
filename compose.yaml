@@ -1,0 +1,22 @@
+services:
+  academy-file:
+    image: postgres:16
+    container_name: academy-file-db
+    environment:
+      POSTGRES_USER: archivos_user
+      POSTGRES_PASSWORD: archivos_password
+      POSTGRES_DB: academy-file
+    ports:
+      - '5434:5434'
+    command: -p 5434
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: academy-file-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@academy.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - '5051:80'
+    depends_on:
+      - academy-file
